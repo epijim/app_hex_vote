@@ -13,7 +13,7 @@ library(shinyjs)
   options(mongodb = list(
     "host" = "jamessandbox-ed3jh.mongodb.net",
     "username" = "james_app",
-    "password" = read_lines("data/.mongodb_pass")
+    "password" = read_lines("data/mongodb_pass")
   ))
   databaseName <- "shinybackend"
   collectionName <- "hextest"
