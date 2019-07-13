@@ -1,15 +1,15 @@
 shinyServer(function(input, output, session) {
 
     # server-side processing
-    output$x3 = DT::renderDataTable(
+    output$full_list = DT::renderDataTable(
         metadata,
         selection = 'single',
         options = list(paging = FALSE, searching = FALSE),
         server = TRUE)
 
     # print the selected indices
-    output$x4 = renderImage({
-        s <- input$x3_rows_selected
+    output$selected_image = renderImage({
+        s <- input$full_list_rows_selected
 
         validate(
             need(!is.null(s), "Please select a hex sticker")
