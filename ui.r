@@ -2,7 +2,7 @@ fluidPage(
 
   tags$head(
     tags$meta(name="google-signin-scope",content="profile email"),
-    tags$meta(name="google-signin-client_id", content="929050326827-sr6aaibd9ge0phsrdtgqq56evfd26jh6.apps.googleusercontent.com"),
+    tags$meta(name="google-signin-client_id", content="929050326827-9d96o8evlkrup0av7f44s2rhavij776g.apps.googleusercontent.com"),
     HTML('<script src="https://apis.google.com/js/platform.js?onload=init"></script>'),
     includeScript("signin.js"),
     useShinyjs()

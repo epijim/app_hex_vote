@@ -116,6 +116,7 @@ shinyServer(function(input, output, session) {
             geom_bar(width=.5) +
             ggthemes::theme_hc() +
             labs(
+                title = "Votes made so far",
                 x = "Sticker",
                 y = "Votes"
             )
