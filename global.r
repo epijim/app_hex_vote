@@ -1,6 +1,8 @@
 library(shiny)
 library(DT)
 library(tidyverse)
+library(shinyjs)
+
 
 # load the metadata
   metadata <- read_csv("data/metadata.csv")
@@ -11,7 +13,7 @@ library(tidyverse)
   options(mongodb = list(
     "host" = "jamessandbox-ed3jh.mongodb.net",
     "username" = "james_app",
-    "password" = read_lines("data/.mongodb_pass")
+    "password" = read_lines("data/mongodb_pass")
   ))
   databaseName <- "shinybackend"
   collectionName <- "hextest"
