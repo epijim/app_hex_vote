@@ -13,6 +13,12 @@ shinyServer(function(input, output, session) {
         }
     })
 
+    # load data
+    responses <- reactive({
+        input$submit
+        loadData()
+      })
+
     # server-side processing
     output$full_list = DT::renderDataTable(
         metadata,
@@ -56,7 +62,8 @@ shinyServer(function(input, output, session) {
         data <- tibble(
             name = input$g.name,
             email = input$g.email,
-            vote = selected_hex()
+            vote = selected_hex(),
+            time = Sys.time()
         )
         data
     })
@@ -75,4 +82,46 @@ shinyServer(function(input, output, session) {
         saveData(formData())
     })
 
+    output$yourvote <- renderText({
+        user <- input$g.email
+        last_vote <- responses() %>%
+          arrange(
+            desc(time)
+          ) %>%
+          filter(email %in% user) %>%
+          slice(1)
+
+        if(nrow(last_vote) != 1) return()
+
+        paste(
+          "You voted for",last_vote$vote,"at",last_vote$time
+        )
+
+    })
+
+    output$plot <- renderPlot({
+        responses() %>%
+            rename(Sticker = vote) %>%
+            group_by(email) %>%
+            arrange(
+                desc(time)
+            ) %>%
+            slice(1) %>%
+            ungroup %>%
+            ggplot(
+                aes(
+                    Sticker
+                )
+            ) +
+            geom_bar(width=.5) +
+            ggthemes::theme_hc() +
+            labs(
+                x = "Sticker",
+                y = "Votes"
+            )
+    })
+
 })
+
+
+

@@ -38,14 +38,16 @@ fluidPage(
       hr(),
       # Vote: ----
       helpText("You must be logged in and have selected a sticker to vote"),
-      actionButton("submit", "Submit vote for selected")
+      actionButton("submit", "Submit vote for selected"),
+      textOutput("yourvote")
     ),
 
     # Main panel for displaying outputs ----
     mainPanel(
 
       # Output: ----
-      imageOutput('selected_image')
+      imageOutput('selected_image'),
+      plotOutput("plot")
 
     )
   )
