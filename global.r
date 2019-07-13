@@ -1,6 +1,8 @@
 library(shiny)
 library(DT)
 library(tidyverse)
+library(shinyjs)
+
 
 # load the metadata
   metadata <- read_csv("data/metadata.csv")
